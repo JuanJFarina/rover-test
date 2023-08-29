@@ -79,7 +79,11 @@ export default function Home() {
         </form>
         <select>
           {userConfig.configs.map(config =>
-            <option>{`${config.rover} ${config.earth_date} ${config.camera}`}</option>
+            <option
+              value={`${config.rover} ${config.earth_date} ${config.camera}`}
+            >
+              {`${config.rover} ${config.earth_date} ${config.camera}`}
+            </option>
           )}
         </select>
         <button onClick={saveConfig} className="p-2">Guardar búsqueda</button>
