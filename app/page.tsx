@@ -80,7 +80,7 @@ export default function Home() {
         <select>
           {userConfig.configs.map(config =>
             <option
-              value={`${config.rover} ${config.earth_date} ${config.camera}`}
+              key={`${config.rover} ${config.earth_date} ${config.camera}`}
             >
               {`${config.rover} ${config.earth_date} ${config.camera}`}
             </option>
