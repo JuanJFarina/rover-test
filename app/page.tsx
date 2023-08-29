@@ -10,29 +10,29 @@ export default function Home() {
   const [photos, setPhotos] = useState([{ id: '', img_src: '' }]);
   const [isLoading, setIsLoading] = useState(false);
   const [userConfig, setUserConfig] = useState({ configs: [{ rover: '', earth_date: '', camera: '' }] });
-  const roverRef = useRef(null);
-  const dateRef = useRef(null);
-  const camRef = useRef(null);
+  const roverRef = useRef<HTMLSelectElement>(null);
+  const dateRef = useRef<HTMLInputElement>(null);
+  const camRef = useRef<HTMLSelectElement>(null);
 
   const handleRover = () => {
-    setRover(roverRef.current.value);
+    setRover(roverRef.current!.value);
     handleSubmit();
   }
 
   const handleDate = () => {
-    setDate(dateRef.current.value);
+    setDate(dateRef.current!.value);
     handleSubmit();
   }
 
   const handleCam = () => {
-    setCamera(camRef.current.value);
+    setCamera(camRef.current!.value);
     handleSubmit();
   }
 
   const handleSubmit = async (e?: React.SyntheticEvent) => {
     e?.preventDefault();
     setIsLoading(true);
-    const response = await fetch(`/api/?rover=${roverRef.current.value}&earth_date=${dateRef.current.value}&camera=${camRef.current.value}`);
+    const response = await fetch(`/api/?rover=${roverRef.current!.value}&earth_date=${dateRef.current!.value}&camera=${camRef.current!.value}`);
     const resultados: { photos: [] } = await response.json();
     setPhotos(resultados.photos);
     setIsLoading(false);
