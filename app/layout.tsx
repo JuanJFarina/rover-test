@@ -10,36 +10,11 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children, }: { children: React.ReactNode }) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="flex flex-col items-center justify-between">
-          <form action="/photos">
-            <label htmlFor="rover">Seleccionar Rover:</label>
-            <select name="rover" id="rover">
-              <option value="curiosity">Curiosity</option>
-              <option value="opportunity">Opportunity</option>
-              <option value="spirit">Spirit</option>
-            </select>
-            <label htmlFor="earth_date">Seleccionar fecha:</label>
-            <input type="date" id="earth_date" name="earth_date" />
-            <label htmlFor="camera">Seleccionar camara:</label>
-            <select name="camera" id="camera">
-              <option value="">Todas</option>
-              <option value="FHAZ">FHAZ</option>
-              <option value="NAVCAM">NAVCAM</option>
-              <option value="MAST">MAST</option>
-              <option value="CHEMCAM">CHEMCAM</option>
-              <option value="MAHLI">MAHLI</option>
-              <option value="MARDI">MARDI</option>
-              <option value="RHAZ">RHAZ</option>
-            </select>
-            <button type="submit">Obtener fotos</button>
-          </form>
-        </header>
-        <main>
           {children}
-        </main>
       </body>
     </html>
   )

@@ -1,4 +1,9 @@
-export default async function RoverPhotos(req: { params: {}, searchParams: { rover: string, earth_date: string, camera: string } }) {
+import { NextApiResponse } from "next";
+import { NextResponse } from "next/server";
+
+export default async function RoverPhotos(
+    req: { params: {}, searchParams: { rover: string, earth_date: string, camera: string } }
+) {
 
     console.log(req.searchParams);
 
@@ -12,21 +17,15 @@ export default async function RoverPhotos(req: { params: {}, searchParams: { rov
     else {
         response = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${request.rover}/photos?earth_date=${request.earth_date}&camera=${request.camera}&api_key=mn0cL646A86fzVD3vI3MdMpphxncHeUDjNCzgPja`);
     }
-    const resultados: {
+ /*   const resultados: {
         photos: {
+            id: string;
             img_src: string;
         }[]
-    } = await response.json();
+    } = await response.json();*/
 
+    const resultados = await response.json();
     console.log(resultados);
-
-    return (
-        <div className="results">
-            {resultados.photos.length > 0 ? resultados.photos.slice(0, 25).map(photo => (
-                <img src={photo.img_src} alt={`Mars Rover - ${request.rover}`} />
-            ))
-                :
-                'No se encontraron resultados'}
-        </div>
-    )
+    return NextResponse.json({resultados});
+//    return JSON.stringify(resultados);
 }
